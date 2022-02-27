@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foca-Do</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="/js/index.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <img src="/images/foca.png" alt="Logo foca" />
+        </div>
+        <div class="title">
+          <h2>Foca-Do</h2>
+        </div>
+        <div class="settings">
+          <i class="material-icons">settings</i>
+        </div>
+      </header>
+
+      <main>
+        <h1 class="msg">Foca</h1>
+        <div class="timer">
+          <div class="countdown">
+            <h1 id="clock" class="clock">25:00</h1>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="play-pause">
+            <i class="material-icons">pause</i>
+          </div>
+          <div class="stop">
+            <i class="material-icons">stop</i>
+          </div>
+        </div>
+
+        <div class="pregress-bars">
+          <div class="bar">
+            <div class="progress-line day">
+              <span></span>
+            </div>
+            <div class="info">
+              <p>Meta de hoje - 10 Pomodoros</p>
+            </div>
+          </div>
+          <div class="bar">
+            <div class="progress-line week">
+              <span></span>
+            </div>
+            <div class="info">
+              <p>Meta da Semana - 68 Pomodoros</p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- MODAL SETTINGS -->
+      <div class="modal-wrapper">
+        <div class="modal">
+          <i class="material-icons">close</i>
+          <h2>Configurações</h2>
+          <form>
+            <fieldset>
+              <legend>Personal information</legend>
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="Surname"
+                  class="form-control"
+                  value=""
+                  required
+                  id="surname"
+                />
+                <label for="surname">Surname</label>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="Givenname"
+                  class="form-control"
+                  value=""
+                  required
+                  id="givenname"
+                />
+                <label for="givenname">Givenname</label>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="Birthday"
+                  class="form-control"
+                  value=""
+                  required
+                  id="birthday"
+                />
+                <label for="birthday">Birthday</label>
+              </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+          <!-- <form action="#">
+            <p>Pomodoro</p>
+            <input type="radio" id="pomo25" name="pomodoro" value="25F5D" />
+            <label for="html">25' de Foco e 5' de Descanco</label><br />
+            <input type="radio" id="pomo50" name="pomodoro" value="50F10D" />
+            <label for="html">50' de Foco e 10' de Descanco</label><br />
+
+            <p>Meta por dia (pomodoros)</p>
+            <div class="fields">
+              <label for-id="monday" class="sr-only">Segunda-feira</label>
+              <input type="number" id="monday" name="monday" required />
+              <label for-id="tuesday" class="sr-only">Terça-feira</label>
+              <input type="number" id="tuesday" name="tuesday" required />
+              <label for-id="wednesday" class="sr-only">Quarta-feira</label>
+              <input type="number" id="wednesday" name="wednesday" required />
+              <label for-id="thursday" class="sr-only">Quinta-feira</label>
+              <input type="number" id="thursday" name="thursday" required />
+              <label for-id="friday" class="sr-only">Sexta-feira</label>
+              <input type="number" id="friday" name="friday" required />
+              <label for-id="saturday" class="sr-only">Sábado</label>
+              <input type="number" id="saturday" name="saturday" required />
+              <label for-id="sunday" class="sr-only">Domingo</label>
+              <input type="number" id="sunday" name="sunday" required />
+            </div>
+
+            <div class="buttons">
+              <div class="button gray cancel">Cancelar</div>
+              <button class="">Salvar</button>
+            </div>
+          </form> -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
