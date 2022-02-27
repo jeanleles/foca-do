@@ -1,7 +1,7 @@
-// $(document).on('input', ':input', function (e) {
-//   const $this = $(this);
-//   $this.toggleClass('filled', Boolean($this.val().length));
-// });
+$(document).on('input', ':input', function (e) {
+  const $this = $(this);
+  $this.toggleClass('filled', Boolean($this.val().length));
+});
 
 const startingMinutes = 25
 let time = startingMinutes * 60
