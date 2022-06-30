@@ -6,7 +6,7 @@ Meta diária, por dia da semana;
 
 Meta da semana (soma das metas diárias);
 
-Mostrar metas com barras igual do site [jeanleles.com](http://jeanleles.com) (skills);
+Mostrar metas com barras;
 
 Passar o curso por cima, mostrar porcentagem concluída;
 
