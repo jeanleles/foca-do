@@ -25,3 +25,5 @@ Lançar notificação e som ao término do tempo;
 Iniciar o próximo tempo (pausa/foco) quando um terminar e o user fechar a notificação;
 
 Quando bater a meta dar parabéns!!!
+
+![focado](https://user-images.githubusercontent.com/7783578/178890707-982bd702-ace1-428c-b66f-83c8dacd8ad5.png)
