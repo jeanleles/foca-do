@@ -3,11 +3,19 @@ const iconPlayStop = document.getElementById('iconPlayStop')
 const stopBtn = document.getElementById('stopBtn')
 const clock = document.getElementById('clock')
 const msg = document.querySelector('.msg')
+const pomodorosToday = document.querySelector('.pomos-today')
 clock.innerText = '25:00'
 
-setInterval(function () {
-    changeBG()
-}, 2000)
+pomodorosToday.innerText = localStorage.pomosToday
+
+function countPomosToday() {
+    if (localStorage.pomosToday) {
+        localStorage.pomosToday = Number(localStorage.pomosToday) + 1
+    } else {
+        localStorage.pomosToday = 1
+    }
+    pomodorosToday.innerText = localStorage.pomosToday
+}
 
 let minutes = 24
 let seconds = 60
@@ -21,10 +29,10 @@ function start() {
     if (zerou) {
         seconds = 60
         minutes = msg.innerText === 'FOCA' ? 24 : 4
-        countdown = setInterval(timer, 100)
-    } 
+        countdown = setInterval(timer, 1000)
+    }
     else
-    countdown = setInterval(timer, 100)
+        countdown = setInterval(timer, 1000)
 }
 
 function stop() {
@@ -44,15 +52,15 @@ function finished() {
     if (msg.innerText === 'PAUSA') {
         msg.innerText = 'FOCA'
         playSoundAlarm()
-        setTimeout( () => {
+        setTimeout(() => {
             playSoundAlarm()
-        },3000)
+        }, 3000)
     } else {
         msg.innerText = 'PAUSA'
+        countPomosToday()
         playSoundAlarm()
+    }
 
-    } 
-        
 }
 
 function timer() {
@@ -94,6 +102,8 @@ function changeBG() {
     background-repeat: no-repeat;
     background-size: cover;`
 }
+
+changeBG()
 
 function playSoundAlarm() {
     const alarm = new Audio('../sounds/alarm.mp3');
