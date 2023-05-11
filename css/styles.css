@@ -25,6 +25,12 @@
 
 html {
   font-size: 62.5%;
+
+  --menta: hsl(176 73.0% 7.3%);
+	--indigo: hsl(230 36.4% 12.9%);
+	--cyano: hsl(192 60.0% 7.2%);
+	--violeta: hsl(0 0% 0% / 0);
+	--menta2: hsl(175 79.3% 8.9%);
 }
 
 body,
@@ -36,7 +42,10 @@ p {
 }
 
 body {
-  background-color: var(--second-color1);
+  background: radial-gradient(ellipse at 100% 100%, hsl(254 100% 6% / 0.07), var(--violeta), transparent), linear-gradient(to bottom right, var(--menta), var(--indigo), var(--menta2), var(--cyano));
+  color: var(--bg-white1);
+  transition: all 0.2s linear;
+	min-height: 100vh;
 }
 
 h1,

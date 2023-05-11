@@ -45,18 +45,19 @@ function stop() {
 }
 
 function finished() {
-    clock.innerText = '00:00'
     clearInterval(countdown)
     zerou = true
     iconPlayStop.setAttribute('src', './images/play.png')
     if (msg.innerText === 'PAUSA') {
         msg.innerText = 'FOCA'
+        clock.innerText = '25:00'
         playSoundAlarm()
         setTimeout(() => {
             playSoundAlarm()
         }, 3000)
     } else {
         msg.innerText = 'PAUSA'
+        clock.innerText = '05:00'
         countPomosToday()
         playSoundAlarm()
     }
