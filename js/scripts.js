@@ -7,7 +7,7 @@ const pomodorosToday = document.querySelector('.pomos-today')
 const limpar = document.querySelector('.limpar')
 clock.innerText = '25:00'
 
-pomodorosToday.innerText = localStorage.pomosToday
+pomodorosToday.innerText = localStorage.pomosToday ? localStorage.pomosToday : 0
 
 function countPomosToday() {
     if (localStorage.pomosToday) {
@@ -35,10 +35,10 @@ function start() {
     if (zerou) {
         seconds = 60
         minutes = msg.innerText === 'FOCA' ? 24 : 4
-        countdown = setInterval(timer, 10)
+        countdown = setInterval(timer, 1000)
     }
     else
-        countdown = setInterval(timer, 10)
+        countdown = setInterval(timer, 1000)
 }
 
 function stop() {
