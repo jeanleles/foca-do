@@ -151,7 +151,7 @@ main .msg {
 }
 
 .play-stop:hover {
-  background: rgba(251, 251, 251, 0.1);
+  background: rgba(251, 251, 251, 0.2);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
@@ -167,4 +167,27 @@ main .msg {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+}
+
+.limpar {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: all ease .2s;
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.limpar:hover {
+  background: rgba(251, 251, 251, 0.2);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.limpar span {
+  color: var(--text-color);
 }

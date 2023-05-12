@@ -4,6 +4,7 @@ const stopBtn = document.getElementById('stopBtn')
 const clock = document.getElementById('clock')
 const msg = document.querySelector('.msg')
 const pomodorosToday = document.querySelector('.pomos-today')
+const limpar = document.querySelector('.limpar')
 clock.innerText = '25:00'
 
 pomodorosToday.innerText = localStorage.pomosToday
@@ -17,6 +18,11 @@ function countPomosToday() {
     pomodorosToday.innerText = localStorage.pomosToday
 }
 
+limpar.addEventListener('click', () => {
+    localStorage.pomosToday = 0
+    pomodorosToday.innerText = localStorage.pomosToday
+})
+
 let minutes = 24
 let seconds = 60
 
@@ -29,10 +35,10 @@ function start() {
     if (zerou) {
         seconds = 60
         minutes = msg.innerText === 'FOCA' ? 24 : 4
-        countdown = setInterval(timer, 1000)
+        countdown = setInterval(timer, 10)
     }
     else
-        countdown = setInterval(timer, 1000)
+        countdown = setInterval(timer, 10)
 }
 
 function stop() {
@@ -95,7 +101,6 @@ startStopBtn.addEventListener('click', () => {
     }
 })
 
-
 function changeBG() {
     let unsplashPhoto = 'https://source.unsplash.com/random/1366x768/?cars'
     document.body.style.cssText = `background: url('${unsplashPhoto}');
@@ -110,5 +115,4 @@ function playSoundAlarm() {
     const alarm = new Audio('../sounds/alarm.mp3');
     alarm.play();
 }
-
 
