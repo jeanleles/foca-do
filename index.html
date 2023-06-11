@@ -13,25 +13,56 @@
 
 <body>
   <div class="container">
-    <main>
-      <div class="content">
-        <div class="wrapper-countdown">
-          <div class="countdown">
-            <h2 class="msg">Foca</h2>
-            <h1 id="clock" class="clock"></h1>
-            <div class="play-stop" id="startStopBtn">
-              <img src="./images/play.png" alt="play-stop" id="iconPlayStop">
+    <div class="content">
+      <div class="wrapper-countdown">
+        <div class="countdown">
+          <h2 class="msg">Foca</h2>
+          <h1 id="clock" class="clock"></h1>
+          <div class="play-stop" id="startStopBtn">
+            <img src="./images/play.png" alt="play-stop" id="iconPlayStop">
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="sidebar-inside">
+          <div class="datetime">
+            <h3 id="time"></h3>
+            <p id="date"></p>
+          </div>
+          <div class="weather">
+            <img src="images/pin.png" alt="location">
+            <h3 class="weather-location"></h3>
+          </div>
+          <hr>
+          <div class="wrapper-pomodoro">
+            <span></span>
+            <h3>Pomodoros hoje:  <span class="pomos-today"></span></h3>
+            <div class="zerar">
+              <img src="images/delete.png" alt="zerar pomodoros" title="Zerar Pomodoros">
             </div>
           </div>
         </div>
-        <div class="wrapper-pomodoro">
-          <h3>Pomodoros hoje:  <span class="pomos-today"></span></h3>
+      </div>
+    </div>
+
+    <button class="settings-btn" id="opensettings"><img src="images/settings.png" alt="settings"></button>
+
+    <div id="formPopup" class="form-popup">
+      <div class="form-wrapper">
+        <div class="form-wrapper-inside">
+          <span class="close-button">&times;</span>
+          <h2>Configurações</h2>
+          <form>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>            
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>            
+            <button type="submit">Enviar</button>
+          </form>
         </div>
       </div>
-    </main>
-  </div>
-  <div class="limpar">
-    <span>Limpar pomodoros</span>
+    </div>
+
   </div>
   </div>
   </div>
