@@ -5,19 +5,62 @@ const clock = document.getElementById("clock");
 const msg = document.querySelector(".msg");
 const pomodorosToday = document.querySelector(".pomos-today");
 const zerar = document.querySelector(".zerar");
-clock.innerText = "25:00";
+const cityfield = document.querySelector("#city");
 
 pomodorosToday.innerText = localStorage.pomosToday
   ? localStorage.pomosToday
   : 0;
 
+function setPomodoro(){
+    const pomo25 = document.querySelector("#pomo25");
+    const pomo50 = document.querySelector("#pomo50");
+
+    if (localStorage.pomoFocus == 50) {
+        pomo50.checked = true
+    } else {
+        pomo25.checked = true
+    }
+
+    if (pomo25.checked) {
+        localStorage.pomoFocus = 25
+        localStorage.pomoPause = 5
+    } else if (pomo50.checked) {
+        localStorage.pomoFocus = 50
+        localStorage.pomoPause = 10
+    } else {
+        localStorage.pomoFocus = 25
+        localStorage.pomoPause = 5
+    }
+}
+setPomodoro()
+
+let pomoFocus
+let pomoPause
+
+function setStart() {
+    if (localStorage.pomoFocus && localStorage.pomoFocus == 50) {
+        clock.innerText = "50:00"
+        pomoFocus = 49
+        pomoPause = 9
+    } else {
+        clock.innerText = "25:00"
+        pomoFocus = 24
+        pomoPause = 4
+    }
+}
+setStart()
+
 function weather() {
   const APIKey = "6950078ef52cc4e05ab79bd2f7b0fda1";
   var city;
   if (localStorage.city) {
-    city = localStorage.city;
+    city = localStorage.city
+    cityfield.value = city
   } else {
-    localStorage.city = "Goiânia";
+    cityfield.value = "Brazil"
+    localStorage.city = cityfield.value
+    city= localStorage.city
+    cityfield.value = city
   }
 
   fetch(
@@ -33,9 +76,9 @@ function weather() {
     });
 }
 
-setTimeout(() => {
-  weather();
-}, 1000);
+weather();
+// setTimeout(() => {
+// }, 1000);
 
 function countPomosToday() {
   if (localStorage.pomosToday) {
@@ -51,7 +94,7 @@ zerar.addEventListener("click", () => {
   pomodorosToday.innerText = localStorage.pomosToday;
 });
 
-let minutes = 24;
+let minutes = pomoFocus;
 let seconds = 60;
 
 let flag = "play";
@@ -62,7 +105,7 @@ let countdown;
 function start() {
   if (zerou) {
     seconds = 60;
-    minutes = msg.innerText === "FOCA" ? 24 : 4;
+    minutes = msg.innerText === "FOCA" ? pomoFocus : pomoPause;
     countdown = setInterval(timer, 10);
   } else countdown = setInterval(timer, 10);
 }
@@ -71,10 +114,16 @@ function stop() {
   clearInterval(countdown);
   seconds = 60;
   if (msg.innerText === "FOCA") {
-    minutes = 24;
+    minutes = pomoFocus;
+    if (localStorage.pomoFocus == 50) {
+        clock.innerText = "50:00";
+    } else 
     clock.innerText = "25:00";
   } else {
-    minutes = 4;
+    minutes = pomoPause;
+    if (localStorage.pomoFocus == 50) {
+        clock.innerText = "10:00";
+    } else 
     clock.innerText = "05:00";
   }
   iconPlayStop.setAttribute("src", "./images/play.png");
@@ -87,6 +136,9 @@ function finished() {
   iconPlayStop.setAttribute("src", "./images/play.png");
   if (msg.innerText === "PAUSA") {
     msg.innerText = "FOCA";
+    if (localStorage.pomoFocus == 50) {
+        clock.innerText = "50:00";
+    } else 
     clock.innerText = "25:00";
     playSoundAlarm();
     setTimeout(() => {
@@ -94,6 +146,9 @@ function finished() {
     }, 2000);
   } else {
     msg.innerText = "PAUSA";
+    if (localStorage.pomoFocus == 50) {
+        clock.innerText = "10:00";
+    } else 
     clock.innerText = "05:00";
     countPomosToday();
     playSoundAlarm();
@@ -175,9 +230,30 @@ setInterval(displayDate, 1000);
 
 document.getElementById("opensettings").addEventListener("click", function() {
     document.getElementById("formPopup").style.display = "flex";
-  });
-  
-  document.querySelector(".close-button").addEventListener("click", function() {
+});
+
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault(); 
+    localStorage.city = cityfield.value
+    city = localStorage.city
+    weather()
+
+    const pomo25 = document.querySelector("#pomo25");
+    const pomo50 = document.querySelector("#pomo50");
+    if (pomo25.checked) {
+        localStorage.pomoFocus = 25
+        localStorage.pomoPause = 5
+    } else if (pomo50.checked) {
+        localStorage.pomoFocus = 50
+        localStorage.pomoPause = 10
+    }
+
+    setStart()
+
     document.getElementById("formPopup").style.display = "none";
-  });
+});
+  
+document.querySelector(".close-button").addEventListener("click", function() {
+  document.getElementById("formPopup").style.display = "none";
+});
   

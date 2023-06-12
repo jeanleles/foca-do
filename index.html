@@ -52,12 +52,23 @@
         <div class="form-wrapper-inside">
           <span class="close-button">&times;</span>
           <h2>Configurações</h2>
-          <form>
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>            
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>            
-            <button type="submit">Enviar</button>
+          <form action="/">
+            <fieldset class="group">
+              <legend>Pomodoro</legend>          
+              <div>
+                <input type="radio" id="pomo25" name="pomodoro" value="pomo25">
+                <label for="pomo25">25 minutos de foco e 5 de pausa</label>
+              </div>          
+              <div>
+                <input type="radio" id="pomo50" name="pomodoro" value="pomo50">
+                <label for="pomo50">50 minutos de foco e 10 de pausa</label>
+              </div>           
+            </fieldset>
+            <div class="group">
+              <label for="name">Cidade*</label>
+              <input type="text" id="city" name="city" required placeholder="Cidade para mostrar a temperatura">
+            </div>        
+            <button type="submit" class="btn-send">Salvar</button>
           </form>
         </div>
       </div>

@@ -275,6 +275,7 @@ hr {
 
 .form-wrapper {
   background: rgba(255, 255, 255, 0.075);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   width: 360px;
@@ -290,7 +291,7 @@ hr {
 
 .form-popup form {
   padding: 12px;
-  margin: 10% auto;
+  margin: 10px auto;
   max-width: 500px;
   position: relative;
 }
@@ -299,11 +300,9 @@ hr {
   text-align: center;
 }
 
-.form-popup label, .form-popup input, .form-popup button {
-  display: block;
-  width: 100%;
+/* .form-popup label, .form-popup input, .form-popup button {
   margin-bottom: 10px;
-}
+} */
 
 .form-popup button[type="submit"] {
   width: auto;
@@ -316,4 +315,44 @@ hr {
   right: 30px;
   font-size: 26px;
   cursor: pointer;
+}
+
+.group {
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.group div {
+  margin: 4px 0;
+  padding-left: 4px;
+}
+
+input[type="radio"] {
+  appearance: none;
+
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #999;
+  transition: 0.1s all linear;
+  position: relative;
+  top: 2px;
+}
+
+input:checked {
+  border: 6px solid #04AA6B;
+}
+
+input[type="text"] {
+  padding: 6px;
+  margin: 8px 0 8px 4px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.btn-send {
+  padding: 8px 20px;
+  background: #04AA6B;
+  border-radius: 4px;
 }
