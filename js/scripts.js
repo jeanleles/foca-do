@@ -9,44 +9,53 @@ const cityfield = document.querySelector("#city");
 
 pomodorosToday.innerText = localStorage.pomosToday
   ? localStorage.pomosToday
-  : 0;
+  : 0
 
-function setPomodoro(){
-    const pomo25 = document.querySelector("#pomo25");
-    const pomo50 = document.querySelector("#pomo50");
+function setPomodoro() {
+  const pomo25 = document.querySelector("#pomo25");
+  const pomo50 = document.querySelector("#pomo50");
 
-    if (localStorage.pomoFocus == 50) {
-        pomo50.checked = true
-    } else {
-        pomo25.checked = true
-    }
+  if (localStorage.pomoFocus == 50) {
+    pomo50.checked = true
+  } else {
+    pomo25.checked = true
+  }
 
-    if (pomo25.checked) {
-        localStorage.pomoFocus = 25
-        localStorage.pomoPause = 5
-    } else if (pomo50.checked) {
-        localStorage.pomoFocus = 50
-        localStorage.pomoPause = 10
-    } else {
-        localStorage.pomoFocus = 25
-        localStorage.pomoPause = 5
-    }
+  if (pomo25.checked) {
+    localStorage.pomoFocus = 25
+    localStorage.pomoPause = 5
+  } else if (pomo50.checked) {
+    localStorage.pomoFocus = 50
+    localStorage.pomoPause = 10
+  } else {
+    localStorage.pomoFocus = 25
+    localStorage.pomoPause = 5
+  }
 }
 setPomodoro()
 
 let pomoFocus
 let pomoPause
 
+document.getElementById("bg").value = localStorage.bgset
+
+let bgset
+if (!localStorage.bgset) {
+  bgset = document.getElementById("bg").value
+  localStorage.bgset = bgset
+}
+
 function setStart() {
-    if (localStorage.pomoFocus && localStorage.pomoFocus == 50) {
-        clock.innerText = "50:00"
-        pomoFocus = 49
-        pomoPause = 9
-    } else {
-        clock.innerText = "25:00"
-        pomoFocus = 24
-        pomoPause = 4
-    }
+  if (localStorage.pomoFocus && localStorage.pomoFocus == 50) {
+    clock.innerText = "50:00"
+    pomoFocus = 49
+    pomoPause = 9
+  } else {
+    clock.innerText = "25:00"
+    pomoFocus = 24
+    pomoPause = 4
+  }
+  msg.innerHTML = "Foca"
 }
 setStart()
 
@@ -54,13 +63,13 @@ function weather() {
   const APIKey = "6950078ef52cc4e05ab79bd2f7b0fda1";
   var city;
   if (localStorage.city) {
-    city = localStorage.city
-    cityfield.value = city
+    city = localStorage.city;
+    cityfield.value = city;
   } else {
-    cityfield.value = "Brazil"
-    localStorage.city = cityfield.value
-    city= localStorage.city
-    cityfield.value = city
+    cityfield.value = "Brazil";
+    localStorage.city = cityfield.value;
+    city = localStorage.city;
+    cityfield.value = city;
   }
 
   fetch(
@@ -105,26 +114,26 @@ let countdown;
 function start() {
   if (zerou) {
     seconds = 60;
-    minutes = msg.innerText === "FOCA" ? pomoFocus : pomoPause;
-    countdown = setInterval(timer, 10);
-  } else countdown = setInterval(timer, 10);
+    minutes = msg.innerText === "Foca" ? pomoFocus : pomoPause;
+    countdown = setInterval(timer, 1000);
+  } else countdown = setInterval(timer, 1000);
 }
 
 function stop() {
   clearInterval(countdown);
   seconds = 60;
-  if (msg.innerText === "FOCA") {
+  if (msg.innerText === "Pausa") {
     minutes = pomoFocus;
     if (localStorage.pomoFocus == 50) {
-        clock.innerText = "50:00";
-    } else 
-    clock.innerText = "25:00";
+      clock.innerText = "50:00";
+    } else clock.innerText = "25:00";
+    msg.innerHTML = "Foca";
   } else {
     minutes = pomoPause;
     if (localStorage.pomoFocus == 50) {
-        clock.innerText = "10:00";
-    } else 
-    clock.innerText = "05:00";
+      clock.innerText = "10:00";
+    } else clock.innerText = "05:00";
+    msg.innerHTML = "Pausa";
   }
   iconPlayStop.setAttribute("src", "./images/play.png");
   flag = "play";
@@ -134,22 +143,20 @@ function finished() {
   clearInterval(countdown);
   zerou = true;
   iconPlayStop.setAttribute("src", "./images/play.png");
-  if (msg.innerText === "PAUSA") {
-    msg.innerText = "FOCA";
+  if (msg.innerText === "Pausa") {
+    msg.innerText = "Foca";
     if (localStorage.pomoFocus == 50) {
-        clock.innerText = "50:00";
-    } else 
-    clock.innerText = "25:00";
+      clock.innerText = "50:00";
+    } else clock.innerText = "25:00";
     playSoundAlarm();
     setTimeout(() => {
       playSoundAlarm();
     }, 2000);
   } else {
-    msg.innerText = "PAUSA";
+    msg.innerText = "Pausa";
     if (localStorage.pomoFocus == 50) {
-        clock.innerText = "10:00";
-    } else 
-    clock.innerText = "05:00";
+      clock.innerText = "10:00";
+    } else clock.innerText = "05:00";
     countPomosToday();
     playSoundAlarm();
   }
@@ -189,13 +196,13 @@ startStopBtn.addEventListener("click", () => {
 });
 
 function changeBG() {
-  let unsplashPhoto = "https://source.unsplash.com/random/1366x768/?cars";
+  let unsplashPhoto = `https://source.unsplash.com/random/1366x768/?${bgset}`
   document.body.style.cssText = `background: url('${unsplashPhoto}');
     color: var(--text-color);
     background-repeat: no-repeat;
     background-size: cover;`;
 }
-
+//landscape, cars, flowers, NorthernLights
 changeBG();
 
 function playSoundAlarm() {
@@ -224,36 +231,38 @@ function displayDate() {
 }
 
 // Chamando as funções para atualizar a hora e a data a cada segundo
-setInterval(displayTime, 1000);
-setInterval(displayDate, 1000);
+setInterval(displayTime, 1000)
+setInterval(displayDate, 1000)
 
-
-document.getElementById("opensettings").addEventListener("click", function() {
-    document.getElementById("formPopup").style.display = "flex";
+document.getElementById("opensettings").addEventListener("click", function () {
+  document.getElementById("formPopup").style.display = "flex"
 });
 
-document.querySelector("form").addEventListener("submit", function(event) {
-    event.preventDefault(); 
-    localStorage.city = cityfield.value
-    city = localStorage.city
-    weather()
+document.querySelector("form").addEventListener("submit", function (event) {
+  event.preventDefault()
+  localStorage.city = cityfield.value
+  city = localStorage.city
+  weather()
 
-    const pomo25 = document.querySelector("#pomo25");
-    const pomo50 = document.querySelector("#pomo50");
-    if (pomo25.checked) {
-        localStorage.pomoFocus = 25
-        localStorage.pomoPause = 5
-    } else if (pomo50.checked) {
-        localStorage.pomoFocus = 50
-        localStorage.pomoPause = 10
-    }
+  const pomo25 = document.querySelector("#pomo25")
+  const pomo50 = document.querySelector("#pomo50")
+  if (pomo25.checked) {
+    localStorage.pomoFocus = 25
+    localStorage.pomoPause = 5
+  } else if (pomo50.checked) {
+    localStorage.pomoFocus = 50
+    localStorage.pomoPause = 10
+  }
 
-    setStart()
+  setStart()
 
-    document.getElementById("formPopup").style.display = "none";
+  localStorage.bgset = document.getElementById("bg").value
+  bgset = document.getElementById("bg").value
+  changeBG()
+
+  document.getElementById("formPopup").style.display = "none"
 });
-  
-document.querySelector(".close-button").addEventListener("click", function() {
-  document.getElementById("formPopup").style.display = "none";
+
+document.querySelector(".close-button").addEventListener("click", function () {
+  document.getElementById("formPopup").style.display = "none"
 });
-  
