@@ -1,26 +1,15 @@
-## foca-do
-#### Aplicativo para focar nos estudos e trabalho, usando o método do Pomodoro.
+## Foca-do
 
-#### Tempo de Foco: 25 minutos
-#### Tempo de Pausa: 5 minutos
-#### É possível iniciar o tempo clicando no botão de play e recomeçar o tempo clicando no notão stop.
+#### Aplicativo para focar nos estudos e trabalho, usando o método Pomodoro.
 
-#### Ao término do tempo é tocado um som para avisar o usuário.
+##### Tempo de Foco: 25 ou 50 minutos
 
-### Melhorias...
+##### Tempo de Pausa: 5 ou 10 minutos
 
-##### Meta diária, por dia da semana;
+##### É possível iniciar o tempo clicando no botão de play e recomeçar o tempo clicando no notão stop.
 
-##### Meta da semana (soma das metas diárias);
+##### Ao término do tempo é tocado um som para avisar o usuário.
 
-##### Mostrar metas com barras de progresso;
+##### As configurações são salvas no local storage.
 
-##### Salvar settings e informações no local storage;
-
-##### Usar json para guardar as informações;
-
-##### Dentro de settings ter metas (dia/semana), tempo de foco e de pausa, temas (tomato e green), som, notificações;
-
-##### Se clicar no stop, registrar o tempo corrido;
-
-##### Quando bater a meta dar parabéns!!!
+##### É possível alterar o tempo do pomodoro entre 25 ou 50 minutos, alterar a cidade para mostrar a temperatura e alterar o tipo de imagens mostradas no background.
