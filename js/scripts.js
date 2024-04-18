@@ -74,7 +74,7 @@ function setStart() {
 setStart();
 
 async function getWeather(city) {
-  const APIKey = 'sua api key da open weather aqui';
+  const APIKey = '6950078ef52cc4e05ab79bd2f7b0fda1';
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`
   );
@@ -269,6 +269,9 @@ document.querySelector('form').addEventListener('submit', function (event) {
   document.getElementById('formPopup').style.display = 'none';
 });
 
-document.querySelector('.close-button').addEventListener('click', function () {
+function closeFormPopup() {
   document.getElementById('formPopup').style.display = 'none';
-});
+}
+
+document.querySelector('.close-button').addEventListener('click', closeFormPopup);
+document.querySelector('.btn-cancel').addEventListener('click', closeFormPopup);

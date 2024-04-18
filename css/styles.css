@@ -7,7 +7,7 @@
   --header-height: 2.5rem;
 
   --first-color1: hsl(157, 100%, 44%);
-  --first-color2: hsl(329, 100%, 55%);
+  --first-color2: hsl(340, 92%, 37%);
   --second-color1: hsl(240, 10%, 10%);
   --second-color2: hsl(215, 21%, 11%);
   --title-color: hsl(0, 0%, 100%);
@@ -104,6 +104,13 @@ img {
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+
+@media only screen and (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+    gap: 40px;
+  }
 }
 
 .wrapper-countdown {
@@ -313,11 +320,6 @@ hr {
   text-align: center;
 }
 
-.form-popup button[type='submit'] {
-  width: auto;
-  margin-top: 20px;
-}
-
 .close-button {
   position: absolute;
   top: 24px;
@@ -394,8 +396,19 @@ select:focus {
   color: var(--text-color);
 }
 
-.btn-send {
+.btn-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+}
+
+.btn-send, .btn-cancel {
   padding: 8px 20px;
   background: var(--first-color1);
   border-radius: 4px;
+}
+
+.btn-cancel {
+  background: var(--first-color2);
+  cursor: pointer;
 }
