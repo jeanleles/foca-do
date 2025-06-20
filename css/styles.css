@@ -1,6 +1,5 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 /*VARIABLES CSS*/
 :root {
@@ -42,19 +41,15 @@ p {
 }
 
 body {
-  background: radial-gradient(
-      ellipse at 100% 100%,
+  background: radial-gradient(ellipse at 100% 100%,
       hsl(254 100% 6% / 0.07),
       var(--violeta),
-      transparent
-    ),
-    linear-gradient(
-      to bottom right,
+      transparent),
+    linear-gradient(to bottom right,
       var(--menta),
       var(--indigo),
       var(--menta2),
-      var(--cyano)
-    );
+      var(--cyano));
   color: var(--bg-white1);
   transition: all 0.2s linear;
   min-height: 100vh;
@@ -101,6 +96,8 @@ img {
   width: 100%;
   padding: 20px 0;
   display: flex;
+  flex-direction: column;
+  gap: 40px;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -178,7 +175,7 @@ img {
 .sidebar-inside {
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
-  padding: 20px 10px;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -272,10 +269,25 @@ hr {
   width: 28px;
   height: 28px;
   background: transparent;
-  transform: all ease 0.5s;
+  transition: all ease 0.3s;
 }
 
 .settings-btn:hover {
+  transform: rotate(20deg);
+}
+
+.update-bg-btn {
+  position: fixed;
+  right: 90px;
+  top: 20px;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  transition: all ease 0.3s;
+  z-index: 10;
+}
+
+.update-bg-btn:hover {
   transform: rotate(20deg);
 }
 
@@ -402,7 +414,8 @@ select:focus {
   margin-top: 3rem;
 }
 
-.btn-send, .btn-cancel {
+.btn-send,
+.btn-cancel {
   padding: 8px 20px;
   background: var(--first-color1);
   border-radius: 4px;
@@ -411,4 +424,18 @@ select:focus {
 .btn-cancel {
   background: var(--first-color2);
   cursor: pointer;
+}
+
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.update-bg-btn.rotating {
+  animation: rotate360 1s linear infinite;
 }

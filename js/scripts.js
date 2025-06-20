@@ -7,14 +7,35 @@ const pomodorosToday = document.querySelector('.pomos-today');
 const zerar = document.querySelector('.zerar');
 const cityfield = document.querySelector('#city');
 
-function updateBg() {
+async function updateBg() {
   const bgseted = localStorage.bgset;
-  let unsplashPhoto = `https://source.unsplash.com/random/1366x768/?${bgseted}`;
-  console.log(unsplashPhoto);
-  document.body.style.cssText = `background: url('${unsplashPhoto}');
-    color: var(--text-color);
-    background-repeat: no-repeat;
-    background-size: cover;`;
+  const accessKey = '[accessKey_Unplash]';
+  const updateBtn = document.getElementById('updatebg');
+  if (updateBtn) updateBtn.classList.add('rotating');
+  try {
+    const response = await fetch(`https://api.unsplash.com/photos/random?query=${bgseted}&orientation=landscape&client_id=${accessKey}`);
+    const data = await response.json();
+    if (data && data.urls && data.urls.full) {
+      const img = new window.Image();
+      img.onload = function() {
+        document.body.style.cssText = `background: url('${data.urls.full}');
+          color: var(--text-color);
+          background-repeat: no-repeat;
+          background-size: cover;`;
+        if (updateBtn) updateBtn.classList.remove('rotating');
+      };
+      img.onerror = function() {
+        if (updateBtn) updateBtn.classList.remove('rotating');
+      };
+      img.src = data.urls.full;
+    } else {
+      throw new Error('Imagem não encontrada na resposta da API.');
+    }
+  } catch (error) {
+    console.error('Erro ao buscar imagem do Unsplash:', error);
+    document.body.style.cssText = `background: radial-gradient(ellipse at 100% 100%, hsl(254 100% 6% / 0.07), var(--violeta), transparent), linear-gradient(to bottom right, var(--menta), var(--indigo), var(--menta2), var(--cyano)); color: var(--bg-white1);`;
+    if (updateBtn) updateBtn.classList.remove('rotating');
+  }
 }
 
 function changeBG() {
@@ -30,9 +51,9 @@ function changeBG() {
 }
 changeBG();
 
-// document.getElementById('updatebg').addEventListener('click', function () {
-//   updateBg();
-// });
+document.getElementById('updatebg').addEventListener('click', function () {
+  updateBg();
+});
 
 pomodorosToday.innerText = localStorage.pomosToday
   ? localStorage.pomosToday
@@ -75,11 +96,19 @@ setStart();
 
 async function getWeather(city) {
   const APIKey = '6950078ef52cc4e05ab79bd2f7b0fda1';
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`
-  );
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`
+    );
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Erro ao buscar dados do clima:', error);
+    return null;
+  }
 }
 
 function setCity(city) {
@@ -249,17 +278,31 @@ document.querySelector('form').addEventListener('submit', function (event) {
 
   const pomo25 = document.querySelector('#pomo25');
   const pomo50 = document.querySelector('#pomo50');
+
+  // Salva os valores antigos
+  const oldPomoFocus = Number(localStorage.pomoFocus);
+  const oldPomoPause = Number(localStorage.pomoPause);
+  let newPomoFocus = oldPomoFocus;
+  let newPomoPause = oldPomoPause;
+
   if (pomo25.checked) {
-    localStorage.pomoFocus = 25;
-    localStorage.pomoPause = 5;
+    newPomoFocus = 25;
+    newPomoPause = 5;
   } else if (pomo50.checked) {
-    localStorage.pomoFocus = 50;
-    localStorage.pomoPause = 10;
+    newPomoFocus = 50;
+    newPomoPause = 10;
   }
 
-  zerou = true;
-  stop();
-  setStart();
+  // Só atualiza e reseta se mudou
+  const pomodoroAlterado = (oldPomoFocus !== newPomoFocus) || (oldPomoPause !== newPomoPause);
+  if (pomodoroAlterado) {
+    localStorage.pomoFocus = newPomoFocus;
+    localStorage.pomoPause = newPomoPause;
+    zerou = true;
+    stop();
+    setStart();
+  }
+
   weather();
 
   localStorage.bgset = document.getElementById('bg').value;
